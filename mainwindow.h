@@ -15,18 +15,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    int solve(int h, int r);
-
-    // Статические переменные для подсчёта покрытия
-    static int solveCallCount;
-    static int lLessThan1Count;
-    static int lGreaterEqual1Count;
-
-private slots:
-    void on_pushButton_clicked();
-
 private:
     Ui::MainWindow *ui;
 };
-
-#endif
+#endif // MAINWINDOW_H
