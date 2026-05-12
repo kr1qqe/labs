@@ -2,40 +2,31 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTextEdit>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QGroupBox>
-#include "lesson.h"
 
-class MainWindow : public QMainWindow {
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget* parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void ProcessMultipleLines(const QString& data);
+    int solve(int h, int r);
+
+    // Статические переменные для подсчёта покрытия
+    static int solveCallCount;
+    static int lLessThan1Count;
+    static int lGreaterEqual1Count;
 
 private slots:
-    void OnParseButtonClicked();
-    void OnClearButtonClicked();
-    void OnHelpButtonClicked();
+    void on_pushButton_clicked();
 
 private:
-    void SetupUi();
-    void SetupConnections();
-    void UpdateDisplay(const Lesson& lesson);
-    void ShowError(const QString& error_message);
-    void ClearDisplay();
-
-    QTextEdit* input_text_edit_;
-    QTextEdit* result_line_edit_;
-    QPushButton* parse_button_;
-    QPushButton* clear_button_;
+    Ui::MainWindow *ui;
 };
 
 #endif
